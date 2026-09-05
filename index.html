@@ -3,1036 +3,1339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#d99da7">
+<link rel="manifest" href="manifest.json">
 
 <title>LumiTales 🌷</title>
 
-<link rel="manifest" href="manifest.json">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+:root{
+  --bg:#f8f2ed;
+  --card:#fffaf7;
+  --text:#51433f;
+  --muted:#867774;
+  --pink:#d99da7;
+  --line:#eaded7;
 }
 
+*{box-sizing:border-box}
+
 body{
-    background:#f8f2ed;
-    color:#4b403d;
-    font-family:"DM Sans",sans-serif;
-    min-height:100vh;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
 }
 
 body.dark{
-    background:#282425;
-    color:#eee4df;
+  --bg:#292627;
+  --card:#383233;
+  --text:#f8efeb;
+  --muted:#c9bbb6;
+  --line:#514646;
+}
+
+button,input{
+  font:inherit;
 }
 
 button{
-    font-family:inherit;
-    cursor:pointer;
+  border:0;
+  cursor:pointer;
 }
 
-.app{
-    max-width:1100px;
-    margin:auto;
-    padding:25px 18px 50px;
+.wrap{
+  max-width:950px;
+  margin:auto;
+  padding:22px 16px 55px;
 }
 
-/* TOP BAR */
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:35px;
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:38px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
+  font-family:Georgia,serif;
+  font-size:29px;
+  font-weight:bold;
 }
 
-.logo-flower{
-    font-size:30px;
+.logo span,
+h1 span{
+  color:var(--pink);
 }
 
-.logo-text{
-    font-family:"Cormorant Garamond",serif;
-    font-size:29px;
-    font-weight:700;
+.round{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--card);
+  color:var(--text);
 }
-
-.theme{
-    border:none;
-    background:#fffaf6;
-    width:43px;
-    height:43px;
-    border-radius:50%;
-    font-size:20px;
-    box-shadow:0 5px 18px rgba(90,60,50,.08);
-}
-
-.dark .theme{
-    background:#3a3334;
-}
-
-/* HERO */
 
 .hero{
-    text-align:center;
-    padding:25px 10px 38px;
+  text-align:center;
 }
 
-.small{
-    color:#a9877c;
-    font-size:13px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    margin-bottom:10px;
+.kicker{
+  font-size:12px;
+  letter-spacing:3px;
+  color:#9b8079;
 }
 
 .hero h1{
-    font-family:"Cormorant Garamond",serif;
-    font-size:clamp(45px,8vw,76px);
-    line-height:.95;
-    font-weight:600;
-    color:#574744;
-}
-
-.dark .hero h1{
-    color:#f3e7e1;
-}
-
-.hero h1 span{
-    color:#c78d96;
+  font-family:Georgia,serif;
+  font-size:clamp(45px,9vw,75px);
+  line-height:.92;
+  margin:18px 0;
 }
 
 .hero p{
-    margin:18px auto 0;
-    max-width:560px;
-    color:#897773;
-    line-height:1.7;
+  max-width:650px;
+  margin:20px auto 25px;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.65;
 }
-
-/* SEARCH */
 
 .search{
-    max-width:650px;
-    margin:0 auto 30px;
-    position:relative;
+  width:100%;
+  padding:18px 21px;
+  border:1px solid var(--line);
+  border-radius:40px;
+  background:var(--card);
+  color:var(--text);
+  outline:0;
 }
 
-.search input{
-    width:100%;
-    border:none;
-    outline:none;
-    padding:17px 22px 17px 48px;
-    border-radius:30px;
-    background:#fffaf6;
-    color:#554845;
-    font-size:15px;
-    box-shadow:0 8px 30px rgba(90,60,50,.08);
-}
-
-.dark .search input{
-    background:#393334;
-    color:white;
-}
-
-.search span{
-    position:absolute;
-    left:20px;
-    top:15px;
-}
-
-/* LANGUAGE PILLS */
-
-.languages{
-    display:flex;
-    gap:9px;
-    overflow-x:auto;
-    padding:5px 2px 18px;
-    scrollbar-width:none;
-    justify-content:center;
-}
-
-.languages::-webkit-scrollbar{
-    display:none;
+.langs{
+  display:flex;
+  gap:9px;
+  overflow:auto;
+  padding:16px 1px 25px;
 }
 
 .lang{
-    flex:none;
-    border:none;
-    padding:10px 17px;
-    border-radius:25px;
-    background:#fffaf6;
-    color:#76615c;
-    box-shadow:0 4px 15px rgba(90,60,50,.06);
+  white-space:nowrap;
+  padding:11px 16px;
+  border-radius:25px;
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--line);
 }
 
 .lang.active{
-    background:#d99da7;
-    color:white;
+  background:var(--pink);
+  color:white;
 }
-
-/* FEATURE */
 
 .feature{
-    margin:18px 0 38px;
-    padding:27px;
-    border-radius:28px;
-    background:linear-gradient(135deg,#e8c7c5,#d6e0d2);
-    position:relative;
-    overflow:hidden;
-}
-
-.feature:after{
-    content:"✿";
-    position:absolute;
-    right:22px;
-    top:-8px;
-    font-size:90px;
-    color:rgba(255,255,255,.45);
-}
-
-.feature-label{
-    font-size:12px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    color:#796461;
+  padding:28px;
+  border-radius:28px;
+  background:linear-gradient(135deg,#ead2d1,#dce5d8);
+  margin:8px 0 38px;
 }
 
 .feature h2{
-    font-family:"Cormorant Garamond",serif;
-    font-size:35px;
-    margin:7px 0;
+  font-family:Georgia,serif;
+  font-size:37px;
+  margin:12px 0;
 }
 
 .feature p{
-    max-width:600px;
-    line-height:1.6;
-    color:#665754;
+  line-height:1.6;
 }
 
-.read-btn{
-    margin-top:18px;
-    border:none;
-    background:#fffaf6;
-    color:#68534f;
-    padding:12px 20px;
-    border-radius:25px;
-    font-weight:600;
+.primary{
+  padding:12px 18px;
+  border-radius:25px;
+  font-weight:bold;
+  background:white;
+  color:#554742;
 }
 
-/* SECTION */
-
-.section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    margin:30px 2px 17px;
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
 }
 
-.section-title h2{
-    font-family:"Cormorant Garamond",serif;
-    font-size:32px;
+.head h2{
+  font-family:Georgia,serif;
+  font-size:39px;
+  margin:0 0 15px;
 }
 
-.section-title span{
-    color:#a28780;
-    font-size:13px;
+.count{
+  font-size:13px;
+  color:var(--muted);
 }
 
-/* STORY GRID */
-
-.stories{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:17px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:17px;
 }
 
 .story{
-    background:#fffaf6;
-    border-radius:24px;
-    padding:22px;
-    min-height:235px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    box-shadow:0 8px 25px rgba(90,60,50,.07);
-    transition:.25s;
+  background:var(--card);
+  padding:21px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  min-height:245px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
-.dark .story{
-    background:#373031;
-}
-
-.story:hover{
-    transform:translateY(-4px);
-}
-
-.story-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.top,
+.foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .emoji{
-    font-size:29px;
+  font-size:28px;
 }
 
-.favorite{
-    border:none;
-    background:none;
-    font-size:22px;
+.fav{
+  background:none;
+  color:var(--pink);
+  font-size:25px;
 }
 
-.story-language{
-    margin-top:15px;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#bd8c92;
+.slang{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:#a07876;
+  margin-top:13px;
 }
 
 .story h3{
-    font-family:"Cormorant Garamond",serif;
-    font-size:27px;
-    margin:7px 0;
+  font-family:Georgia,serif;
+  font-size:29px;
+  margin:7px 0;
 }
 
 .story p{
-    color:#887773;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.story-footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:20px;
+  color:var(--muted);
+  line-height:1.5;
 }
 
 .level{
-    font-size:11px;
-    padding:6px 10px;
-    border-radius:15px;
-    background:#edf0e7;
-    color:#68715f;
+  font-size:11px;
+  padding:7px 10px;
+  border-radius:15px;
+  background:#edf0e9;
 }
 
 .open{
-    border:none;
-    background:#d99da7;
-    color:white;
-    border-radius:18px;
-    padding:8px 14px;
-    font-size:12px;
+  padding:12px 18px;
+  border-radius:25px;
+  font-weight:bold;
+  background:var(--text);
+  color:var(--bg);
 }
-
-/* EMPTY */
 
 .empty{
-    text-align:center;
-    padding:45px;
-    color:#a18c86;
+  text-align:center;
+  color:var(--muted);
+  padding:45px;
 }
-
-/* READER */
 
 .reader{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:20;
-    background:#f8f2ed;
-    overflow-y:auto;
+  position:fixed;
+  inset:0;
+  background:#241f1e99;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:5;
 }
 
-.dark .reader{
-    background:#282425;
+.reader.show{
+  display:flex;
 }
 
-.reader-inner{
-    max-width:850px;
-    margin:auto;
-    padding:22px 20px 60px;
+.box{
+  width:min(720px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:var(--card);
+  border-radius:28px;
+  padding:24px;
 }
 
-.back{
-    border:none;
-    background:#fffaf6;
-    border-radius:20px;
-    padding:10px 16px;
-    color:#705c57;
+.rhead{
+  display:flex;
+  justify-content:space-between;
 }
 
-.dark .back{
-    background:#393334;
-    color:#eee;
+.close{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--bg);
+  color:var(--text);
+  font-size:22px;
 }
 
-.reader-head{
-    text-align:center;
-    padding:45px 10px 30px;
+.box h2{
+  font-family:Georgia,serif;
+  font-size:42px;
 }
 
-.reader-head .emoji{
-    font-size:45px;
+.tools{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-.reader-head h1{
-    font-family:"Cormorant Garamond",serif;
-    font-size:52px;
-    margin:10px 0;
-}
-
-.reader-head p{
-    color:#a28780;
-}
-
-.story-box{
-    background:#fffaf6;
-    border-radius:28px;
-    padding:30px;
-    margin-bottom:18px;
-    box-shadow:0 8px 25px rgba(90,60,50,.06);
-}
-
-.dark .story-box{
-    background:#373031;
-}
-
-.story-box h2{
-    font-family:"Cormorant Garamond",serif;
-    font-size:29px;
-    margin-bottom:18px;
+.tool{
+  padding:9px 13px;
+  border-radius:18px;
+  background:var(--bg);
+  color:var(--text);
 }
 
 .original{
-    font-size:19px;
-    line-height:2;
+  font-size:19px;
+  line-height:1.9;
+  white-space:pre-line;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
 }
 
 .translation{
-    font-size:16px;
-    line-height:1.8;
-    color:#756661;
+  color:var(--muted);
+  line-height:1.7;
+  white-space:pre-line;
 }
 
 .vocab{
-    display:grid;
-    gap:10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:8px;
 }
 
 .word{
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    padding:13px 0;
-    border-bottom:1px solid #eadfd9;
+  background:var(--bg);
+  padding:10px;
+  border-radius:13px;
 }
 
-.dark .word{
-    border-color:#504748;
+.word small{
+  color:var(--muted);
 }
 
-/* READER BUTTONS */
-
-.reader-actions{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    margin-top:25px;
+footer{
+  text-align:center;
+  color:var(--muted);
+  margin-top:50px;
+  font-size:13px;
 }
-
-.reader-actions button{
-    border:none;
-    border-radius:22px;
-    padding:11px 17px;
-    background:#d99da7;
-    color:white;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-    .app{
-        padding:18px 13px 40px;
-    }
-
-    .topbar{
-        margin-bottom:15px;
-    }
-
-    .hero{
-        padding-top:18px;
-    }
-
-    .feature{
-        padding:23px;
-    }
-
-    .feature h2{
-        font-size:31px;
-    }
-
-    .story{
-        min-height:220px;
-    }
-
-    .reader-head h1{
-        font-size:43px;
-    }
-
-    .story-box{
-        padding:22px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="wrap">
 
-<header class="topbar">
+<div class="nav">
+  <div class="logo">
+    Lumi<span>Tales</span> ✦
+  </div>
 
-    <div class="logo">
-        <div class="logo-flower">🌷</div>
-        <div class="logo-text">LumiTales</div>
-    </div>
+  <button class="round" onclick="theme()">☾</button>
+</div>
 
-    <button class="theme" onclick="toggleTheme()">☾</button>
-
-</header>
 
 <section class="hero">
 
-    <div class="small">stories for language learners</div>
+<div class="kicker">
+STORIES FOR LANGUAGE LEARNERS
+</div>
 
-    <h1>
-        Read a little.<br>
-        <span>Learn a lot.</span>
-    </h1>
+<h1>
+Read a little.<br>
+<span>Learn a lot.</span>
+</h1>
 
-    <p>
-        Original little stories in beautiful languages,
-        with gentle English translations to help you learn naturally.
-    </p>
+<p>
+Original little stories in beautiful languages,
+with gentle English translations to help you learn naturally.
+</p>
+
+<input
+id="search"
+class="search"
+placeholder="⌕  Search stories..."
+oninput="render()">
 
 </section>
 
-<div class="search">
-    <span>⌕</span>
-    <input
-        id="search"
-        type="text"
-        placeholder="Search stories..."
-        oninput="renderStories()"
-    >
-</div>
 
-<div class="languages" id="languages">
+<div id="langs" class="langs"></div>
 
-    <button class="lang active" onclick="chooseLanguage('All',this)">All</button>
-    <button class="lang" onclick="chooseLanguage('Japanese',this)">🇯🇵 Japanese</button>
-    <button class="lang" onclick="chooseLanguage('Korean',this)">🇰🇷 Korean</button>
-    <button class="lang" onclick="chooseLanguage('Spanish',this)">🇪🇸 Spanish</button>
-    <button class="lang" onclick="chooseLanguage('French',this)">🇫🇷 French</button>
-    <button class="lang" onclick="chooseLanguage('German',this)">🇩🇪 German</button>
-    <button class="lang" onclick="chooseLanguage('Italian',this)">🇮🇹 Italian</button>
-    <button class="lang" onclick="chooseLanguage('Hindi',this)">🇮🇳 Hindi</button>
-    <button class="lang" onclick="chooseLanguage('Arabic',this)">🇸🇦 Arabic</button>
-
-</div>
 
 <section class="feature">
 
-    <div class="feature-label">✦ story of the day</div>
+<small>✦ STORY OF THE DAY</small>
 
-    <h2>The Little Paper Star</h2>
+<h2 id="ft"></h2>
 
-    <p>
-        A tiny original story about a paper star,
-        a quiet room, and one small wish.
-    </p>
+<p id="fd"></p>
 
-    <button class="read-btn" onclick="openStory(0)">
-        Read story → 
-    </button>
+<button class="primary" onclick="openStory(0)">
+Read story →
+</button>
 
 </section>
 
-<div class="section-title">
-    <h2>Explore stories</h2>
-    <span id="count"></span>
-</div>
 
-<div class="stories" id="stories"></div>
+<div class="head">
 
-</div>
+<h2>
+Explore stories
+</h2>
 
-
-<!-- READER -->
-
-<div class="reader" id="reader">
-
-<div class="reader-inner">
-
-    <button class="back" onclick="closeStory()">← Back to stories</button>
-
-    <div class="reader-head">
-
-        <div class="emoji" id="readerEmoji"></div>
-
-        <h1 id="readerTitle"></h1>
-
-        <p id="readerLanguage"></p>
-
-    </div>
-
-    <div class="story-box">
-
-        <h2>Original</h2>
-
-        <div class="original" id="original"></div>
-
-    </div>
-
-    <div class="story-box">
-
-        <h2>English translation</h2>
-
-        <div class="translation" id="translation"></div>
-
-    </div>
-
-    <div class="story-box">
-
-        <h2>Little vocabulary 🌱</h2>
-
-        <div class="vocab" id="vocab"></div>
-
-    </div>
-
-    <div class="reader-actions">
-
-        <button onclick="speakStory()">🔊 Listen</button>
-
-        <button onclick="increaseText()">A+ Text</button>
-        <button onclick="decreaseText()">A− Text</button>
-
-    </div>
+<span id="count" class="count"></span>
 
 </div>
 
+
+<div id="stories" class="grid"></div>
+
+
+<footer>
+Made with little stories and big curiosity 🌷
+</footer>
+
+</div>
+
+
+<div
+id="reader"
+class="reader"
+onclick="if(event.target===this)closeStory()">
+
+<div class="box">
+
+<div class="rhead">
+
+<span id="rlang"></span>
+
+<button class="close" onclick="closeStory()">
+×
+</button>
+
+</div>
+
+
+<h2 id="rt"></h2>
+
+
+<div class="tools">
+
+<button class="tool" onclick="size(-1)">
+A−
+</button>
+
+<button class="tool" onclick="size(1)">
+A+
+</button>
+
+<button class="tool" onclick="listen()">
+🔊 Listen
+</button>
+
+</div>
+
+
+<div id="original" class="original"></div>
+
+
+<h3>
+English translation
+</h3>
+
+<div id="translation" class="translation"></div>
+
+
+<h3>
+Vocabulary
+</h3>
+
+<div id="vocab" class="vocab"></div>
+
+</div>
 </div>
 
 
 <script>
 
+const languages = [
+
+["English","🇬🇧"],
+["Japanese","🇯🇵"],
+["Korean","🇰🇷"],
+["Spanish","🇪🇸"],
+["French","🇫🇷"],
+["German","🇩🇪"],
+["Italian","🇮🇹"],
+["Hindi","🇮🇳"],
+["Arabic","🇸🇦"]
+
+];
+
+
 const stories = [
 
 {
-title:"The Little Paper Star",
-language:"Japanese",
+
 emoji:"⭐",
+
 level:"Beginner",
-description:"A tiny star waits quietly beside a window.",
-original:`小さな紙の星が、窓のそばに置かれていました。
-夜になると、星は月を見ていました。
-「いつか、空を飛んでみたいな」と星は思いました。
-ある朝、風が窓から入ってきました。
-紙の星はふわっと空へ飛びました。
-少しだけでしたが、星はとても嬉しかったです。`,
-translation:`A little paper star sat beside a window.
-At night, the star looked at the moon.
-“Someday, I want to fly in the sky,” the star thought.
-One morning, the wind came through the window.
-The paper star gently flew into the air.
-It was only for a moment, but the star was very happy.`,
+
+description:
+"A tiny story about a paper star, a quiet room, and one small wish.",
+
 vocab:[
-["小さな","little / small"],
-["星","star"],
-["窓","window"],
-["月","moon"],
-["風","wind"]
-]
+["star","a bright object in the night sky"],
+["window","an opening with glass"],
+["wish","something you hope for"],
+["wind","moving air"]
+],
+
+translations:{
+
+English:{
+title:"The Little Paper Star",
+text:
+`One evening, a little paper star sat beside a window.
+
+The moon looked down and the room became quiet.
+
+A soft wind lifted the paper star into the air.
+
+For one small moment, it felt as if the star were flying.
+
+Then it landed safely on the desk, glowing in the moonlight.`
+},
+
+Japanese:{
+title:"小さな紙の星",
+text:
+`ある晩、小さな紙の星が窓のそばにいました。
+
+月が部屋を見下ろすと、部屋は静かになりました。
+
+やさしい風が紙の星を空へ持ち上げました。
+
+ほんの少し、星は飛んでいるように感じました。
+
+そして机の上に静かに着き、月明かりの中で輝きました。`
+},
+
+Korean:{
+title:"작은 종이 별",
+text:
+`어느 저녁, 작은 종이 별 하나가 창문 옆에 있었습니다.
+
+달이 방을 내려다보자 방은 조용해졌습니다.
+
+부드러운 바람이 종이 별을 공중으로 들어 올렸습니다.
+
+잠시 동안 별은 날고 있는 것처럼 느꼈습니다.
+
+그리고 책상 위에 안전하게 내려앉아 달빛 속에서 빛났습니다.`
+},
+
+Spanish:{
+title:"La pequeña estrella de papel",
+text:
+`Una tarde, una pequeña estrella de papel estaba junto a una ventana.
+
+La luna miró la habitación y todo quedó en silencio.
+
+Una brisa suave levantó la estrella en el aire.
+
+Por un momento, pareció que la estrella volaba.
+
+Después cayó suavemente sobre el escritorio y brilló.`
+},
+
+French:{
+title:"La petite étoile en papier",
+text:
+`Un soir, une petite étoile en papier était près d’une fenêtre.
+
+La lune regarda la pièce et tout devint silencieux.
+
+Une brise douce souleva l’étoile dans l’air.
+
+Pendant un instant, elle eut l’impression de voler.
+
+Puis elle retomba sur le bureau et brilla.`
+},
+
+German:{
+title:"Der kleine Papierstern",
+text:
+`Eines Abends lag ein kleiner Papierstern neben einem Fenster.
+
+Der Mond schaute in das Zimmer und alles wurde still.
+
+Ein sanfter Wind hob den Papierstern in die Luft.
+
+Für einen Moment fühlte es sich an, als würde er fliegen.
+
+Dann landete er sicher auf dem Schreibtisch und glänzte.`
+},
+
+Italian:{
+title:"La piccola stella di carta",
+text:
+`Una sera, una piccola stella di carta era accanto a una finestra.
+
+La luna guardò la stanza e tutto diventò silenzioso.
+
+Un vento leggero sollevò la stella nell’aria.
+
+Per un momento, sembrò che la stella stesse volando.
+
+Poi atterrò sulla scrivania e brillò.`
+},
+
+Hindi:{
+title:"कागज़ का छोटा सितारा",
+text:
+`एक शाम, कागज़ का एक छोटा सितारा खिड़की के पास रखा था।
+
+चाँद ने कमरे की ओर देखा और कमरा शांत हो गया।
+
+हल्की हवा ने सितारे को हवा में उठा लिया।
+
+एक पल के लिए उसे लगा जैसे वह उड़ रहा हो।
+
+फिर वह मेज़ पर आकर चाँदनी में चमकने लगा।`
+},
+
+Arabic:{
+title:"النجم الورقي الصغير",
+text:
+`في مساء هادئ، كان نجم صغير من الورق بجانب النافذة.
+
+نظر القمر إلى الغرفة فأصبحت ساكنة.
+
+رفعت نسمة لطيفة النجم الورقي في الهواء.
+
+وللحظة قصيرة، شعر النجم وكأنه يطير.
+
+ثم هبط على المكتب وبدأ يلمع في ضوء القمر.`
+}
+
 },
 
 {
-title:"A Warm Cup of Tea",
-language:"Korean",
+
 emoji:"☕",
+
 level:"Beginner",
-description:"A quiet morning begins with a warm cup of tea.",
-original:`아침에 작은 방 안으로 햇빛이 들어왔습니다.
-나는 창문을 열고 따뜻한 차를 만들었습니다.
-차에서 좋은 향기가 났습니다.
-나는 의자에 앉아 천천히 차를 마셨습니다.
-밖에는 작은 새가 노래하고 있었습니다.
-그 순간, 아침이 아주 평화롭게 느껴졌습니다.`,
-translation:`Sunlight entered a small room in the morning.
-I opened the window and made warm tea.
-The tea smelled wonderful.
-I sat on a chair and slowly drank it.
+
+description:
+"A quiet morning, a warm cup, and a little bird outside.",
+
+vocab:[
+["morning","the early part of the day"],
+["tea","a warm drink"],
+["bird","an animal with feathers"],
+["peaceful","calm and quiet"]
+],
+
+translations:{
+
+English:{
+title:"A Warm Cup of Tea",
+text:
+`A quiet morning began with a warm cup of tea.
+
+Mina opened the window and felt the gentle air.
+
 A little bird was singing outside.
-At that moment, the morning felt very peaceful.`,
-vocab:[
-["아침","morning"],
-["방","room"],
-["햇빛","sunlight"],
-["창문","window"],
-["새","bird"]
-]
+
+She sat by the window and listened.
+
+The tea smelled wonderful, and the morning felt peaceful.`
+},
+
+Japanese:{
+title:"温かいお茶",
+text:
+`静かな朝が、温かいお茶とともに始まりました。
+
+ミナは窓を開け、やさしい空気を感じました。
+
+外では小さな鳥が歌っていました。
+
+彼女は窓辺に座って、その声を聞きました。
+
+お茶はいい香りがして、朝は穏やかでした。`
+},
+
+Korean:{
+title:"따뜻한 차 한 잔",
+text:
+`조용한 아침은 따뜻한 차 한 잔과 함께 시작되었습니다.
+
+미나는 창문을 열고 부드러운 공기를 느꼈습니다.
+
+밖에서는 작은 새가 노래하고 있었습니다.
+
+그녀는 창가에 앉아 그 소리를 들었습니다.
+
+차에서는 좋은 향기가 났고 아침은 평화로웠습니다.`
+},
+
+Spanish:{
+title:"Una taza de té caliente",
+text:
+`Una mañana tranquila comenzó con una taza de té caliente.
+
+Mina abrió la ventana y sintió el aire suave.
+
+Un pequeño pájaro cantaba afuera.
+
+Ella se sentó junto a la ventana y escuchó.
+
+El té olía muy bien y la mañana era tranquila.`
+},
+
+French:{
+title:"Une tasse de thé chaud",
+text:
+`Un matin calme commença avec une tasse de thé chaud.
+
+Mina ouvrit la fenêtre et sentit l’air doux.
+
+Un petit oiseau chantait dehors.
+
+Elle s’assit près de la fenêtre et écouta.
+
+Le thé sentait bon et le matin était paisible.`
+},
+
+German:{
+title:"Eine warme Tasse Tee",
+text:
+`Ein ruhiger Morgen begann mit einer warmen Tasse Tee.
+
+Mina öffnete das Fenster und spürte die sanfte Luft.
+
+Draußen sang ein kleiner Vogel.
+
+Sie setzte sich ans Fenster und hörte zu.
+
+Der Tee roch wunderbar und der Morgen war friedlich.`
+},
+
+Italian:{
+title:"Una tazza di tè caldo",
+text:
+`Una mattina tranquilla iniziò con una tazza di tè caldo.
+
+Mina aprì la finestra e sentì l’aria delicata.
+
+Fuori cantava un piccolo uccello.
+
+Si sedette vicino alla finestra e ascoltò.
+
+Il tè aveva un profumo meraviglioso e la mattina era tranquilla.`
+},
+
+Hindi:{
+title:"गर्म चाय का प्याला",
+text:
+`एक शांत सुबह गर्म चाय के प्याले के साथ शुरू हुई।
+
+मीना ने खिड़की खोली और हल्की हवा महसूस की।
+
+बाहर एक छोटी चिड़िया गा रही थी।
+
+वह खिड़की के पास बैठकर सुनने लगी।
+
+चाय की खुशबू अच्छी थी और सुबह शांत थी।`
+},
+
+Arabic:{
+title:"كوب من الشاي الدافئ",
+text:
+`بدأ صباح هادئ مع كوب من الشاي الدافئ.
+
+فتحت مينا النافذة وشعرت بالهواء اللطيف.
+
+كان طائر صغير يغني في الخارج.
+
+جلست بجانب النافذة واستمعت إليه.
+
+كانت رائحة الشاي جميلة وكان الصباح هادئًا.`
+}
+
 },
 
 {
+
+emoji:"☔",
+
+level:"Beginner",
+
+description:
+"A rainy walk becomes a beautiful little adventure.",
+
+vocab:[
+["rain","water falling from clouds"],
+["umbrella","something used to stay dry"],
+["street","a road in a town"],
+["beautiful","pleasant to see"]
+],
+
+translations:{
+
+English:{
 title:"The Blue Umbrella",
-language:"Spanish",
-emoji:"☂️",
-level:"Beginner",
-description:"An umbrella discovers that rainy days can be beautiful.",
-original:`La lluvia comenzó por la mañana.
-Una niña abrió su paraguas azul y salió.
-Las calles estaban llenas de pequeños charcos.
-Ella caminó lentamente y escuchó el sonido de la lluvia.
-No tenía prisa.
-Para ella, aquel día gris era también un día bonito.`,
-translation:`The rain began in the morning.
-A girl opened her blue umbrella and went outside.
+text:
+`Rain began in the morning.
+
+A girl opened her blue umbrella and walked outside.
+
 The streets were full of little puddles.
-She walked slowly and listened to the sound of the rain.
-She was not in a hurry.
-For her, that grey day was also a beautiful day.`,
-vocab:[
-["lluvia","rain"],
-["mañana","morning"],
-["paraguas","umbrella"],
-["calle","street"],
-["bonito","beautiful"]
-]
+
+She listened to the rain and watched the drops fall.
+
+For her, the rainy day was beautiful.`
+},
+
+Japanese:{
+title:"青い傘",
+text:
+`朝から雨が降り始めました。
+
+女の子は青い傘を開いて外へ歩きました。
+
+道には小さな水たまりがありました。
+
+彼女は雨の音を聞き、雫を見ました。
+
+彼女にとって、雨の日は美しい一日でした。`
+},
+
+Korean:{
+title:"파란 우산",
+text:
+`아침부터 비가 내리기 시작했습니다.
+
+한 소녀가 파란 우산을 펴고 밖으로 걸어 나갔습니다.
+
+길에는 작은 물웅덩이가 가득했습니다.
+
+그녀는 빗소리를 듣고 빗방울을 바라보았습니다.
+
+그녀에게 비 오는 날은 아름다웠습니다.`
+},
+
+Spanish:{
+title:"El paraguas azul",
+text:
+`La lluvia comenzó por la mañana.
+
+Una niña abrió su paraguas azul y salió a caminar.
+
+Las calles estaban llenas de pequeños charcos.
+
+Escuchó la lluvia y vio caer las gotas.
+
+Para ella, el día lluvioso era hermoso.`
+},
+
+French:{
+title:"Le parapluie bleu",
+text:
+`La pluie commença le matin.
+
+Une fille ouvrit son parapluie bleu et sortit marcher.
+
+Les rues étaient pleines de petites flaques.
+
+Elle écouta la pluie et regarda tomber les gouttes.
+
+Pour elle, la journée pluvieuse était belle.`
+},
+
+German:{
+title:"Der blaue Regenschirm",
+text:
+`Am Morgen begann der Regen.
+
+Ein Mädchen öffnete ihren blauen Regenschirm und ging nach draußen.
+
+Die Straßen waren voller kleiner Pfützen.
+
+Sie hörte den Regen und sah die Tropfen fallen.
+
+Für sie war der Regentag wunderschön.`
+},
+
+Italian:{
+title:"L’ombrello blu",
+text:
+`La pioggia iniziò al mattino.
+
+Una ragazza aprì il suo ombrello blu e uscì a camminare.
+
+Le strade erano piene di piccole pozzanghere.
+
+Ascoltò la pioggia e guardò cadere le gocce.
+
+Per lei, la giornata di pioggia era bellissima.`
+},
+
+Hindi:{
+title:"नीली छतरी",
+text:
+`सुबह बारिश शुरू हो गई।
+
+एक लड़की ने अपनी नीली छतरी खोली और बाहर चल पड़ी।
+
+सड़कें छोटी-छोटी पानी की गड्ढियों से भरी थीं।
+
+उसने बारिश की आवाज़ सुनी और गिरती बूँदों को देखा।
+
+उसके लिए बारिश का दिन बहुत सुंदर था।`
+},
+
+Arabic:{
+title:"المظلة الزرقاء",
+text:
+`بدأ المطر في الصباح.
+
+فتحت فتاة مظلتها الزرقاء ومشت في الخارج.
+
+كانت الشوارع مليئة بالبرك الصغيرة.
+
+استمعت إلى المطر وشاهدت القطرات.
+
+بالنسبة إليها، كان اليوم الماطر جميلًا.`
+}
+
 },
 
 {
-title:"La Petite Lumière",
-language:"French",
-emoji:"🕯️",
-level:"Beginner",
-description:"A little light stays awake on a quiet evening.",
-original:`Dans une petite maison, une lumière brillait près de la fenêtre.
-La nuit était calme et le vent était doux.
-Une fille regardait la lumière et souriait.
-Elle pensait aux petites choses qui rendent une journée heureuse.
-Parfois, une petite lumière suffit pour rendre une pièce chaleureuse.`,
-translation:`In a little house, a light was shining near the window.
-The night was quiet and the wind was gentle.
-A girl looked at the light and smiled.
-She thought about the little things that make a day happy.
-Sometimes, a small light is enough to make a room feel warm.`,
-vocab:[
-["maison","house"],
-["lumière","light"],
-["fenêtre","window"],
-["nuit","night"],
-["heureuse","happy"]
-]
-},
 
-{
-title:"The Quiet Garden",
-language:"German",
 emoji:"🌿",
+
 level:"Beginner",
-description:"A small garden teaches someone to slow down.",
-original:`Hinter einem kleinen Haus lag ein ruhiger Garten.
-Dort wuchsen Blumen und grüne Pflanzen.
-Jeden Morgen ging ein Mädchen in den Garten.
-Sie setzte sich unter einen Baum und hörte den Vögeln zu.
-Der Garten war nicht groß.
-Aber für sie war er ein besonderer Ort.`,
-translation:`Behind a small house there was a quiet garden.
-Flowers and green plants grew there.
-Every morning, a girl went into the garden.
-She sat under a tree and listened to the birds.
-The garden was not large.
-But for her, it was a special place.`,
+
+description:
+"A small garden teaches a simple lesson about patience.",
+
 vocab:[
-["klein","small"],
-["Garten","garden"],
-["Blume","flower"],
-["Baum","tree"],
-["Vogel","bird"]
-]
+["garden","a place where plants grow"],
+["seed","a beginning of a plant"],
+["patient","able to wait calmly"],
+["grow","to become bigger"]
+],
+
+translations:{
+
+English:{
+title:"The Quiet Garden",
+text:
+`Every afternoon, Leo watered a tiny seed in his garden.
+
+For many days, nothing seemed to happen.
+
+He kept watering it and waited patiently.
+
+One morning, a small green leaf appeared.
+
+Leo smiled. Some things need time.`
 },
 
-{
-title:"Una Finestra Aperta",
-language:"Italian",
-emoji:"🪟",
-level:"Beginner",
-description:"An open window brings a little piece of the world inside.",
-original:`La mattina, una finestra era aperta.
-Una brezza entrava nella stanza.
-Sul tavolo c'era un libro e vicino al libro c'era una tazza.
-La ragazza guardò fuori.
-Vide il cielo, gli alberi e una bicicletta rossa.
-Sorrise e iniziò a leggere.`,
-translation:`In the morning, a window was open.
-A breeze entered the room.
-There was a book on the table and a cup beside it.
-The girl looked outside.
-She saw the sky, the trees, and a red bicycle.
-She smiled and began to read.`,
-vocab:[
-["mattina","morning"],
-["finestra","window"],
-["brezza","breeze"],
-["libro","book"],
-["cielo","sky"]
-]
+Japanese:{
+title:"静かな庭",
+text:
+`毎日の午後、レオは庭の小さな種に水をあげました。
+
+何日たっても、何も起こらないように見えました。
+
+彼は水をあげ続け、辛抱強く待ちました。
+
+ある朝、小さな緑の葉が出てきました。
+
+レオは微笑みました。時間が必要なものもあります。`
 },
 
-{
-title:"बारिश की खुशबू",
-language:"Hindi",
-emoji:"🌧️",
-level:"Beginner",
-description:"The first rain brings an old familiar feeling.",
-original:`बारिश की पहली बूंदें शाम को आईं।
-खिड़की के पास बैठी लड़की ने बाहर देखा।
-मिट्टी से एक प्यारी सी खुशबू आ रही थी।
-सड़क पर लोग धीरे-धीरे चल रहे थे।
-उसने अपनी किताब बंद की और बारिश सुनने लगी।
-उसे लगा जैसे दुनिया थोड़ी शांत हो गई है।`,
-translation:`The first drops of rain came in the evening.
-A girl sitting near the window looked outside.
-A lovely smell came from the earth.
-People were walking slowly on the street.
-She closed her book and listened to the rain.
-She felt as if the world had become a little quieter.`,
-vocab:[
-["बारिश","rain"],
-["बूंद","drop"],
-["खिड़की","window"],
-["मिट्टी","earth / soil"],
-["शांत","quiet / peaceful"]
-]
+Korean:{
+title:"조용한 정원",
+text:
+`매일 오후, 레오는 정원의 작은 씨앗에 물을 주었습니다.
+
+며칠 동안 아무 일도 일어나지 않는 것 같았습니다.
+
+그는 계속 물을 주며 참을성 있게 기다렸습니다.
+
+어느 아침, 작은 초록 잎이 나타났습니다.
+
+레오는 미소 지었습니다. 어떤 것들은 시간이 필요합니다.`
 },
 
-{
-title:"نجمة صغيرة",
-language:"Arabic",
-emoji:"🌙",
-level:"Beginner",
-description:"A little star looks down on a quiet village.",
-original:`في الليل، كانت هناك نجمة صغيرة في السماء.
-كانت تنظر إلى قرية هادئة تحتها.
-كانت البيوت مضيئة، والناس يستعدون للنوم.
-شعرت النجمة بالسعادة لأنها تستطيع أن تضيء الظلام.
-بقيت هناك طوال الليل.`,
-translation:`At night, there was a little star in the sky.
-It looked down at a quiet village.
-The houses were lit, and people were getting ready to sleep.
-The star felt happy because it could brighten the darkness.
-It stayed there throughout the night.`,
-vocab:[
-["الليل","night"],
-["نجمة","star"],
-["السماء","sky"],
-["قرية","village"],
-["سعادة","happiness"]
-]
+Spanish:{
+title:"El jardín tranquilo",
+text:
+`Cada tarde, Leo regaba una pequeña semilla en su jardín.
+
+Durante muchos días, parecía que no pasaba nada.
+
+Siguió regándola y esperó con paciencia.
+
+Una mañana apareció una pequeña hoja verde.
+
+Leo sonrió. Algunas cosas necesitan tiempo.`
+},
+
+French:{
+title:"Le jardin calme",
+text:
+`Chaque après-midi, Leo arrosait une petite graine dans son jardin.
+
+Pendant plusieurs jours, rien ne semblait se passer.
+
+Il continua de l’arroser et attendit patiemment.
+
+Un matin, une petite feuille verte apparut.
+
+Leo sourit. Certaines choses ont besoin de temps.`
+},
+
+German:{
+title:"Der ruhige Garten",
+text:
+`Jeden Nachmittag goss Leo einen kleinen Samen in seinem Garten.
+
+Viele Tage lang schien nichts zu passieren.
+
+Er goss ihn weiter und wartete geduldig.
+
+Eines Morgens erschien ein kleines grünes Blatt.
+
+Leo lächelte. Manche Dinge brauchen Zeit.`
+},
+
+Italian:{
+title:"Il giardino tranquillo",
+text:
+`Ogni pomeriggio, Leo annaffiava un piccolo seme nel suo giardino.
+
+Per molti giorni sembrava che non accadesse nulla.
+
+Continuò ad annaffiarlo e aspettò con pazienza.
+
+Una mattina apparve una piccola foglia verde.
+
+Leo sorrise. Alcune cose hanno bisogno di tempo.`
+},
+
+Hindi:{
+title:"शांत बगीचा",
+text:
+`हर दोपहर, लियो अपने बगीचे में एक छोटे बीज को पानी देता था।
+
+कई दिनों तक ऐसा लगा जैसे कुछ नहीं हो रहा है।
+
+वह पानी देता रहा और धैर्य से इंतज़ार करता रहा।
+
+एक सुबह एक छोटी हरी पत्ती दिखाई दी।
+
+लियो मुस्कुराया। कुछ चीज़ों को समय लगता है।`
+},
+
+Arabic:{
+title:"الحديقة الهادئة",
+text:
+`كل بعد ظهر، كان ليو يسقي بذرة صغيرة في حديقته.
+
+مرت أيام كثيرة ولم يبدو أن شيئًا يحدث.
+
+استمر في سقيها وانتظر بصبر.
+
+في صباح أحد الأيام، ظهرت ورقة خضراء صغيرة.
+
+ابتسم ليو. بعض الأشياء تحتاج إلى وقت.`
+}
+
 }
 
 ];
 
-let selectedLanguage="All";
+
+let selectedLanguage="English";
 let currentStory=0;
-let textSize=19;
+let fontSize=19;
+
+
+function setupLanguages(){
+
+const box=document.getElementById("langs");
+
+box.innerHTML=languages.map(x=>`
+
+<button
+class="lang ${x[0]==="English"?"active":""}"
+onclick="chooseLanguage('${x[0]}',this)">
+
+${x[1]} ${x[0]}
+
+</button>
+
+`).join("");
+
+}
+
 
 function chooseLanguage(language,button){
 
-    selectedLanguage=language;
+selectedLanguage=language;
 
-    document.querySelectorAll(".lang")
-    .forEach(x=>x.classList.remove("active"));
+document
+.querySelectorAll(".lang")
+.forEach(b=>b.classList.remove("active"));
 
-    button.classList.add("active");
+button.classList.add("active");
 
-    renderStories();
+render();
+
 }
 
-function renderStories(){
 
-    const container=document.getElementById("stories");
-    const query=document.getElementById("search").value.toLowerCase();
+function render(){
 
-    let filtered=stories.filter(story=>{
+const query=
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
 
-        const languageMatch=
-            selectedLanguage==="All" ||
-            story.language===selectedLanguage;
 
-        const searchMatch=
-            story.title.toLowerCase().includes(query) ||
-            story.language.toLowerCase().includes(query) ||
-            story.description.toLowerCase().includes(query);
+const filtered=stories.filter(story=>{
 
-        return languageMatch && searchMatch;
-    });
+const title=
+story.translations[selectedLanguage].title
+.toLowerCase();
 
-    document.getElementById("count").textContent=
-        filtered.length+" stories";
+return title.includes(query) ||
+story.description.toLowerCase().includes(query);
 
-    if(filtered.length===0){
+});
 
-        container.innerHTML=
-        `<div class="empty">
-        🌷<br><br>
-        No stories found yet.
-        </div>`;
 
-        return;
-    }
+document.getElementById("count").textContent=
+filtered.length+" stories";
 
-    container.innerHTML=filtered.map(story=>{
 
-        const index=stories.indexOf(story);
+document.getElementById("ft").textContent=
+stories[0].translations[selectedLanguage].title;
 
-        return `
-        <article class="story">
+document.getElementById("fd").textContent=
+stories[0].description;
 
-            <div>
 
-                <div class="story-top">
+const container=
+document.getElementById("stories");
 
-                    <div class="emoji">${story.emoji}</div>
 
-                    <button
-                        class="favorite"
-                        onclick="favoriteStory(${index})"
-                        id="fav-${index}">
-                        ${isFavorite(index)?"♥":"♡"}
-                    </button>
+if(filtered.length===0){
 
-                </div>
+container.innerHTML=`
+<div class="empty">
+🌷<br><br>
+No stories found.
+</div>
+`;
 
-                <div class="story-language">
-                    ${story.language}
-                </div>
+return;
 
-                <h3>${story.title}</h3>
-
-                <p>${story.description}</p>
-
-            </div>
-
-            <div class="story-footer">
-
-                <span class="level">${story.level}</span>
-
-                <button
-                    class="open"
-                    onclick="openStory(${index})">
-                    Read →
-                </button>
-
-            </div>
-
-        </article>
-        `;
-
-    }).join("");
 }
+
+
+container.innerHTML=
+
+filtered.map(story=>{
+
+const index=stories.indexOf(story);
+
+return `
+
+<article class="story">
+
+<div>
+
+<div class="top">
+
+<div class="emoji">
+${story.emoji}
+</div>
+
+<button
+class="fav"
+onclick="toggleFavorite(${index})">
+
+${isFavorite(index)?"♥":"♡"}
+
+</button>
+
+</div>
+
+
+<div class="slang">
+${selectedLanguage}
+</div>
+
+
+<h3>
+${story.translations[selectedLanguage].title}
+</h3>
+
+
+<p>
+${story.description}
+</p>
+
+</div>
+
+
+<div class="foot">
+
+<span class="level">
+${story.level}
+</span>
+
+<button
+class="open"
+onclick="openStory(${index})">
+
+Read →
+
+</button>
+
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
+}
+
 
 function openStory(index){
 
-    currentStory=index;
+currentStory=index;
 
-    const story=stories[index];
+const story=stories[index];
+const translation=
+story.translations[selectedLanguage];
 
-    document.getElementById("readerEmoji").textContent=story.emoji;
-    document.getElementById("readerTitle").textContent=story.title;
-    document.getElementById("readerLanguage").textContent=
-        story.language+" • "+story.level;
+document.getElementById("rt").textContent=
+translation.title;
 
-    document.getElementById("original").textContent=story.original;
-    document.getElementById("translation").textContent=story.translation;
+document.getElementById("rlang").textContent=
+selectedLanguage+" • "+story.level;
 
-    document.getElementById("vocab").innerHTML=
-        story.vocab.map(word=>`
-            <div class="word">
-                <strong>${word[0]}</strong>
-                <span>${word[1]}</span>
-            </div>
-        `).join("");
+document.getElementById("original").textContent=
+translation.text;
 
-    document.getElementById("reader").style.display="block";
+document.getElementById("translation").textContent=
+story.translations.English.text;
 
-    document.body.style.overflow="hidden";
+
+document.getElementById("vocab").innerHTML=
+
+story.vocab.map(word=>`
+
+<div class="word">
+
+<b>${word[0]}</b>
+
+<br>
+
+<small>
+${word[1]}
+</small>
+
+</div>
+
+`).join("");
+
+
+document.getElementById("reader")
+.classList.add("show");
+
+document.body.style.overflow="hidden";
+
 }
+
 
 function closeStory(){
 
-    document.getElementById("reader").style.display="none";
+document.getElementById("reader")
+.classList.remove("show");
 
-    document.body.style.overflow="auto";
+document.body.style.overflow="";
+
+if("speechSynthesis" in window){
+
+speechSynthesis.cancel();
+
 }
 
-function toggleTheme(){
-
-    document.body.classList.toggle("dark");
-
-    localStorage.setItem(
-        "lumiDark",
-        document.body.classList.contains("dark")
-    );
 }
 
-if(localStorage.getItem("lumiDark")==="true"){
-    document.body.classList.add("dark");
+
+function size(change){
+
+fontSize+=change;
+
+if(fontSize<15) fontSize=15;
+
+if(fontSize>28) fontSize=28;
+
+document.getElementById("original")
+.style.fontSize=fontSize+"px";
+
 }
 
-function isFavorite(index){
 
-    let fav=
-        JSON.parse(localStorage.getItem("lumiFavorites")||"[]");
+function listen(){
 
-    return fav.includes(index);
-}
+if(!("speechSynthesis" in window))
+return;
 
-function favoriteStory(index){
+speechSynthesis.cancel();
 
-    let fav=
-        JSON.parse(localStorage.getItem("lumiFavorites")||"[]");
+const text=
+document.getElementById("original").textContent;
 
-      if(fav.includes(index)){
-        fav = fav.filter(i => i !== index);
-    } else {
-        fav.push(index);
-    }
+const codes={
 
-    localStorage.setItem("lumiFavorites", JSON.stringify(fav));
-    renderStories();
-}
-
-renderStories();
-
-if(localStorage.getItem("lumiDark")==="true"){
-    document.body.classList.add("dark");
-}
-</script>
-
-</body>
-</html>
+English:"en",
+Japanese:"ja",
+Korean:"ko",
+Spanish:"es",
+Frenc
