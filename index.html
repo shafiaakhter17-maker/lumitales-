@@ -15,16 +15,22 @@
   --text:#51433f;
   --muted:#867774;
   --pink:#d99da7;
+  --pink2:#efd0d3;
+  --green:#aab9a5;
   --line:#eaded7;
+  --shadow:0 10px 30px rgba(80,60,55,.08);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:Arial,sans-serif;
+  transition:.3s;
 }
 
 body.dark{
@@ -32,7 +38,8 @@ body.dark{
   --card:#383233;
   --text:#f8efeb;
   --muted:#c9bbb6;
-  --line:#514646;
+  --line:#514747;
+  --shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 button,input{
@@ -40,1302 +47,774 @@ button,input{
 }
 
 button{
-  border:0;
   cursor:pointer;
 }
 
-.wrap{
-  max-width:950px;
+.app{
+  max-width:1000px;
   margin:auto;
-  padding:22px 16px 55px;
+  padding:20px;
 }
 
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:38px;
+/* HEADER */
+
+header{
+  text-align:center;
+  padding:35px 10px 20px;
 }
 
 .logo{
   font-family:Georgia,serif;
-  font-size:29px;
-  font-weight:bold;
-}
-
-.logo span,
-h1 span{
-  color:var(--pink);
-}
-
-.round{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:var(--card);
+  font-size:42px;
+  margin:0;
   color:var(--text);
 }
 
-.hero{
-  text-align:center;
-}
-
-.kicker{
-  font-size:12px;
-  letter-spacing:3px;
-  color:#9b8079;
-}
-
-.hero h1{
-  font-family:Georgia,serif;
-  font-size:clamp(45px,9vw,75px);
-  line-height:.92;
-  margin:18px 0;
-}
-
-.hero p{
-  max-width:650px;
-  margin:20px auto 25px;
+.tagline{
   color:var(--muted);
-  font-size:17px;
-  line-height:1.65;
+  margin:8px 0 20px;
 }
+
+.header-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.icon-btn{
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--text);
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  box-shadow:var(--shadow);
+}
+
+/* SEARCH */
 
 .search{
   width:100%;
-  padding:18px 21px;
   border:1px solid var(--line);
-  border-radius:40px;
   background:var(--card);
   color:var(--text);
-  outline:0;
+  padding:14px 18px;
+  border-radius:18px;
+  outline:none;
+  margin:10px 0 18px;
 }
 
-.langs{
+.search:focus{
+  border-color:var(--pink);
+}
+
+/* LANGUAGES */
+
+.section-title{
+  font-family:Georgia,serif;
+  font-size:22px;
+  margin:20px 0 12px;
+}
+
+.languages{
   display:flex;
-  gap:9px;
-  overflow:auto;
-  padding:16px 1px 25px;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
 }
 
 .lang{
-  white-space:nowrap;
-  padding:11px 16px;
-  border-radius:25px;
+  border:1px solid var(--line);
   background:var(--card);
   color:var(--text);
-  border:1px solid var(--line);
+  padding:9px 13px;
+  border-radius:20px;
+  transition:.2s;
 }
 
 .lang.active{
   background:var(--pink);
   color:white;
+  border-color:var(--pink);
 }
 
-.feature{
-  padding:28px;
-  border-radius:28px;
-  background:linear-gradient(135deg,#ead2d1,#dce5d8);
-  margin:8px 0 38px;
+/* STORIES */
+
+.stories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
 }
 
-.feature h2{
-  font-family:Georgia,serif;
-  font-size:37px;
-  margin:12px 0;
-}
-
-.feature p{
-  line-height:1.6;
-}
-
-.primary{
-  padding:12px 18px;
+.story-card{
+  background:var(--card);
+  border:1px solid var(--line);
   border-radius:25px;
-  font-weight:bold;
-  background:white;
-  color:#554742;
+  padding:22px;
+  box-shadow:var(--shadow);
+  transition:.2s;
 }
 
-.head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
+.story-card:hover{
+  transform:translateY(-3px);
 }
 
-.head h2{
-  font-family:Georgia,serif;
-  font-size:39px;
-  margin:0 0 15px;
-}
-
-.count{
+.story-number{
   font-size:13px;
   color:var(--muted);
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:17px;
+.story-title{
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin:8px 0;
 }
 
-.story{
-  background:var(--card);
-  padding:21px;
-  border:1px solid var(--line);
-  border-radius:25px;
-  min-height:245px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+.story-description{
+  color:var(--muted);
+  line-height:1.5;
+  font-size:14px;
 }
 
-.top,
-.foot{
+.card-bottom{
   display:flex;
   justify-content:space-between;
   align-items:center;
-}
-
-.emoji{
-  font-size:28px;
-}
-
-.fav{
-  background:none;
-  color:var(--pink);
-  font-size:25px;
-}
-
-.slang{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-  color:#a07876;
-  margin-top:13px;
-}
-
-.story h3{
-  font-family:Georgia,serif;
-  font-size:29px;
-  margin:7px 0;
-}
-
-.story p{
-  color:var(--muted);
-  line-height:1.5;
+  margin-top:18px;
 }
 
 .level{
-  font-size:11px;
-  padding:7px 10px;
-  border-radius:15px;
-  background:#edf0e9;
+  background:var(--pink2);
+  color:var(--text);
+  padding:6px 10px;
+  border-radius:12px;
+  font-size:12px;
 }
 
-.open{
-  padding:12px 18px;
-  border-radius:25px;
-  font-weight:bold;
-  background:var(--text);
-  color:var(--bg);
+.open-btn{
+  border:0;
+  background:var(--pink);
+  color:white;
+  padding:9px 14px;
+  border-radius:14px;
 }
 
-.empty{
-  text-align:center;
+.favorite{
+  border:0;
+  background:transparent;
+  font-size:22px;
   color:var(--muted);
-  padding:45px;
 }
+
+.favorite.active{
+  color:#d46c7a;
+}
+
+/* READER */
 
 .reader{
+  display:none;
   position:fixed;
   inset:0;
-  background:#241f1e99;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  z-index:5;
+  background:var(--bg);
+  overflow-y:auto;
+  z-index:10;
 }
 
 .reader.show{
-  display:flex;
+  display:block;
 }
 
-.box{
-  width:min(720px,100%);
-  max-height:92vh;
-  overflow:auto;
+.reader-inner{
+  max-width:800px;
+  margin:auto;
+  padding:25px 20px 50px;
+}
+
+.close-btn{
+  border:1px solid var(--line);
   background:var(--card);
-  border-radius:28px;
-  padding:24px;
-}
-
-.rhead{
-  display:flex;
-  justify-content:space-between;
-}
-
-.close{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:var(--bg);
   color:var(--text);
-  font-size:22px;
+  padding:9px 14px;
+  border-radius:14px;
 }
 
-.box h2{
+.reader-title{
   font-family:Georgia,serif;
-  font-size:42px;
+  font-size:38px;
+  margin:25px 0 5px;
 }
 
-.tools{
+.reader-meta{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.reading-controls{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
+  margin-bottom:25px;
 }
 
-.tool{
-  padding:9px 13px;
-  border-radius:18px;
-  background:var(--bg);
+.control{
+  border:1px solid var(--line);
+  background:var(--card);
   color:var(--text);
+  padding:9px 13px;
+  border-radius:13px;
 }
 
-.original{
-  font-size:19px;
+.story-box{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:25px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
+}
+
+.box-title{
+  font-family:Georgia,serif;
+  font-size:20px;
+  margin-top:0;
+}
+
+.story-text{
   line-height:1.9;
-  white-space:pre-line;
-  padding:20px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.translation{
-  color:var(--muted);
-  line-height:1.7;
+  font-size:18px;
   white-space:pre-line;
 }
 
 .vocab{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-  gap:8px;
+  gap:10px;
 }
 
 .word{
   background:var(--bg);
-  padding:10px;
-  border-radius:13px;
+  border-radius:14px;
+  padding:12px;
 }
 
-.word small{
+.word strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.empty{
+  text-align:center;
+  padding:40px;
   color:var(--muted);
 }
+
+/* FOOTER */
 
 footer{
   text-align:center;
   color:var(--muted);
-  margin-top:50px;
+  padding:40px 10px 20px;
   font-size:13px;
+}
+
+@media(max-width:600px){
+  .app{
+    padding:14px;
+  }
+
+  .logo{
+    font-size:35px;
+  }
+
+  .reader-title{
+    font-size:30px;
+  }
+
+  .story-text{
+    font-size:16px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<div class="app">
 
-<div class="nav">
-  <div class="logo">
-    Lumi<span>Tales</span> ✦
+<header>
+  <h1 class="logo">LumiTales 🌷</h1>
+  <p class="tagline">Stories that teach · Languages that stay</p>
+
+  <div class="header-buttons">
+    <button class="icon-btn" onclick="toggleDark()" title="Dark mode">🌙</button>
+    <button class="icon-btn" onclick="showFavorites()" title="Favorites">♡</button>
   </div>
-
-  <button class="round" onclick="theme()">☾</button>
-</div>
-
-
-<section class="hero">
-
-<div class="kicker">
-STORIES FOR LANGUAGE LEARNERS
-</div>
-
-<h1>
-Read a little.<br>
-<span>Learn a lot.</span>
-</h1>
-
-<p>
-Original little stories in beautiful languages,
-with gentle English translations to help you learn naturally.
-</p>
+</header>
 
 <input
-id="search"
-class="search"
-placeholder="⌕  Search stories..."
-oninput="render()">
+  id="search"
+  class="search"
+  type="text"
+  placeholder="Search stories..."
+  oninput="renderStories()"
+>
 
-</section>
+<h2 class="section-title">Choose a language 🌍</h2>
 
+<div class="languages" id="languages"></div>
 
-<div id="langs" class="langs"></div>
+<h2 class="section-title">Today's tales 📖</h2>
 
-
-<section class="feature">
-
-<small>✦ STORY OF THE DAY</small>
-
-<h2 id="ft"></h2>
-
-<p id="fd"></p>
-
-<button class="primary" onclick="openStory(0)">
-Read story →
-</button>
-
-</section>
-
-
-<div class="head">
-
-<h2>
-Explore stories
-</h2>
-
-<span id="count" class="count"></span>
-
-</div>
-
-
-<div id="stories" class="grid"></div>
-
+<div class="stories" id="stories"></div>
 
 <footer>
-Made with little stories and big curiosity 🌷
+  Made with 🌷 for language learners
 </footer>
 
 </div>
 
 
-<div
-id="reader"
-class="reader"
-onclick="if(event.target===this)closeStory()">
+<!-- READER -->
 
-<div class="box">
+<div class="reader" id="reader">
 
-<div class="rhead">
+  <div class="reader-inner">
 
-<span id="rlang"></span>
+    <button class="close-btn" onclick="closeReader()">← Back</button>
 
-<button class="close" onclick="closeStory()">
-×
-</button>
+    <h1 class="reader-title" id="readerTitle"></h1>
 
-</div>
+    <div class="reader-meta" id="readerMeta"></div>
 
+    <div class="reading-controls">
+      <button class="control" onclick="changeFont(1)">A+</button>
+      <button class="control" onclick="changeFont(-1)">A−</button>
+      <button class="control" onclick="speakStory()">🔊 Read aloud</button>
+      <button class="control" onclick="stopSpeaking()">⏹ Stop</button>
+      <button class="control" onclick="toggleReaderFavorite()">♡ Favorite</button>
+    </div>
 
-<h2 id="rt"></h2>
+    <div class="story-box">
+      <h2 class="box-title">📖 Story</h2>
+      <div class="story-text" id="storyText"></div>
+    </div>
 
+    <div class="story-box">
+      <h2 class="box-title">🇬🇧 English Translation</h2>
+      <div class="story-text" id="translationText"></div>
+    </div>
 
-<div class="tools">
+    <div class="story-box">
+      <h2 class="box-title">✨ Vocabulary</h2>
+      <div class="vocab" id="vocabulary"></div>
+    </div>
 
-<button class="tool" onclick="size(-1)">
-A−
-</button>
+  </div>
 
-<button class="tool" onclick="size(1)">
-A+
-</button>
-
-<button class="tool" onclick="listen()">
-🔊 Listen
-</button>
-
-</div>
-
-
-<div id="original" class="original"></div>
-
-
-<h3>
-English translation
-</h3>
-
-<div id="translation" class="translation"></div>
-
-
-<h3>
-Vocabulary
-</h3>
-
-<div id="vocab" class="vocab"></div>
-
-</div>
 </div>
 
 
 <script>
 
-const languages = [
+/* =========================
+   LANGUAGES
+========================= */
 
-["English","🇬🇧"],
-["Japanese","🇯🇵"],
-["Korean","🇰🇷"],
-["Spanish","🇪🇸"],
-["French","🇫🇷"],
-["German","🇩🇪"],
-["Italian","🇮🇹"],
-["Hindi","🇮🇳"],
-["Arabic","🇸🇦"]
+const languages = {
+  English:"🇬🇧",
+  Japanese:"🇯🇵",
+  Korean:"🇰🇷",
+  Spanish:"🇪🇸",
+  French:"🇫🇷",
+  German:"🇩🇪",
+  Italian:"🇮🇹",
+  Hindi:"🇮🇳",
+  Arabic:"🇸🇦"
+};
 
-];
+let selectedLanguage = "English";
+let currentStory = null;
+let fontSize = 18;
+let favorites = JSON.parse(localStorage.getItem("lumiFavorites") || "[]");
+let favoritesOnly = false;
 
+
+/* =========================
+   STORIES
+========================= */
 
 const stories = [
 
 {
+  id:1,
+  level:"Beginner",
+  description:"A quiet morning and a small act of kindness.",
 
-emoji:"⭐",
+  translations:{
 
-level:"Beginner",
+    English:{
+      title:"The Little Umbrella",
+      text:"Mina was walking home when it started to rain. She saw an old woman standing beside a bus stop. Mina opened her little umbrella and shared it with her. They walked together until the rain stopped.",
+      vocabulary:[
+        ["umbrella","a thing used to protect you from rain"],
+        ["rain","water that falls from the sky"],
+        ["share","to use something together"],
+        ["together","with another person"]
+      ]
+    },
 
-description:
-"A tiny story about a paper star, a quiet room, and one small wish.",
+    Japanese:{
+      title:"小さな傘",
+      text:"ミナは家に歩いて帰っていると、雨が降り始めました。バス停のそばに一人のおばあさんが立っていました。ミナは小さな傘を開いて、おばあさんと一緒に使いました。二人は雨が止むまで一緒に歩きました。",
+      vocabulary:[
+        ["傘","umbrella"],
+        ["雨","rain"],
+        ["一緒に","together"],
+        ["歩く","to walk"]
+      ]
+    },
 
-vocab:[
-["star","a bright object in the night sky"],
-["window","an opening with glass"],
-["wish","something you hope for"],
-["wind","moving air"]
-],
+    Korean:{
+      title:"작은 우산",
+      text:"미나는 집으로 걸어가고 있었습니다. 갑자기 비가 내리기 시작했습니다. 버스 정류장 옆에 한 할머니가 서 있었습니다. 미나는 작은 우산을 펴서 할머니와 함께 썼습니다. 두 사람은 비가 그칠 때까지 함께 걸었습니다.",
+      vocabulary:[
+        ["우산","umbrella"],
+        ["비","rain"],
+        ["함께","together"],
+        ["걷다","to walk"]
+      ]
+    },
 
-translations:{
+    Spanish:{
+      title:"El pequeño paraguas",
+      text:"Mina caminaba a casa cuando empezó a llover. Vio a una mujer mayor junto a una parada de autobús. Mina abrió su pequeño paraguas y lo compartió con ella. Caminaron juntas hasta que dejó de llover.",
+      vocabulary:[
+        ["paraguas","umbrella"],
+        ["llover","to rain"],
+        ["compartir","to share"],
+        ["juntas","together"]
+      ]
+    },
 
-English:{
-title:"The Little Paper Star",
-text:
-`One evening, a little paper star sat beside a window.
+    French:{
+      title:"Le petit parapluie",
+      text:"Mina rentrait chez elle quand il a commencé à pleuvoir. Elle a vu une vieille dame près d'un arrêt de bus. Mina a ouvert son petit parapluie et l'a partagé avec elle. Elles ont marché ensemble jusqu'à la fin de la pluie.",
+      vocabulary:[
+        ["parapluie","umbrella"],
+        ["pluie","rain"],
+        ["partager","to share"],
+        ["ensemble","together"]
+      ]
+    },
 
-The moon looked down and the room became quiet.
+    German:{
+      title:"Der kleine Regenschirm",
+      text:"Mina ging nach Hause, als es zu regnen begann. Sie sah eine ältere Frau an einer Bushaltestelle. Mina öffnete ihren kleinen Regenschirm und teilte ihn mit ihr. Sie gingen zusammen, bis der Regen aufhörte.",
+      vocabulary:[
+        ["Regenschirm","umbrella"],
+        ["Regen","rain"],
+        ["teilen","to share"],
+        ["zusammen","together"]
+      ]
+    },
 
-A soft wind lifted the paper star into the air.
+    Italian:{
+      title:"Il piccolo ombrello",
+      text:"Mina stava tornando a casa quando iniziò a piovere. Vide una signora anziana vicino a una fermata dell'autobus. Mina aprì il suo piccolo ombrello e lo condivise con lei. Camminarono insieme finché smise di piovere.",
+      vocabulary:[
+        ["ombrello","umbrella"],
+        ["pioggia","rain"],
+        ["condividere","to share"],
+        ["insieme","together"]
+      ]
+    },
 
-For one small moment, it felt as if the star were flying.
+    Hindi:{
+      title:"छोटी छतरी",
+      text:"मीना घर जा रही थी तभी बारिश शुरू हो गई। उसने बस स्टॉप के पास एक बुज़ुर्ग महिला को देखा। मीना ने अपनी छोटी छतरी खोली और उसे उनके साथ साझा किया। बारिश रुकने तक दोनों साथ चलती रहीं।",
+      vocabulary:[
+        ["छतरी","umbrella"],
+        ["बारिश","rain"],
+        ["साझा करना","to share"],
+        ["साथ","together"]
+      ]
+    },
 
-Then it landed safely on the desk, glowing in the moonlight.`
+    Arabic:{
+      title:"المظلة الصغيرة",
+      text:"كانت مينا تمشي إلى المنزل عندما بدأ المطر. رأت امرأة مسنة تقف بجانب موقف الحافلة. فتحت مينا مظلتها الصغيرة وشاركتها معها. مشتا معًا حتى توقف المطر.",
+      vocabulary:[
+        ["مظلة","umbrella"],
+        ["مطر","rain"],
+        ["يشارك","to share"],
+        ["معًا","together"]
+      ]
+    }
+
+  }
 },
 
-Japanese:{
-title:"小さな紙の星",
-text:
-`ある晩、小さな紙の星が窓のそばにいました。
-
-月が部屋を見下ろすと、部屋は静かになりました。
-
-やさしい風が紙の星を空へ持ち上げました。
-
-ほんの少し、星は飛んでいるように感じました。
-
-そして机の上に静かに着き、月明かりの中で輝きました。`
-},
-
-Korean:{
-title:"작은 종이 별",
-text:
-`어느 저녁, 작은 종이 별 하나가 창문 옆에 있었습니다.
-
-달이 방을 내려다보자 방은 조용해졌습니다.
-
-부드러운 바람이 종이 별을 공중으로 들어 올렸습니다.
-
-잠시 동안 별은 날고 있는 것처럼 느꼈습니다.
-
-그리고 책상 위에 안전하게 내려앉아 달빛 속에서 빛났습니다.`
-},
-
-Spanish:{
-title:"La pequeña estrella de papel",
-text:
-`Una tarde, una pequeña estrella de papel estaba junto a una ventana.
-
-La luna miró la habitación y todo quedó en silencio.
-
-Una brisa suave levantó la estrella en el aire.
-
-Por un momento, pareció que la estrella volaba.
-
-Después cayó suavemente sobre el escritorio y brilló.`
-},
-
-French:{
-title:"La petite étoile en papier",
-text:
-`Un soir, une petite étoile en papier était près d’une fenêtre.
-
-La lune regarda la pièce et tout devint silencieux.
-
-Une brise douce souleva l’étoile dans l’air.
-
-Pendant un instant, elle eut l’impression de voler.
-
-Puis elle retomba sur le bureau et brilla.`
-},
-
-German:{
-title:"Der kleine Papierstern",
-text:
-`Eines Abends lag ein kleiner Papierstern neben einem Fenster.
-
-Der Mond schaute in das Zimmer und alles wurde still.
-
-Ein sanfter Wind hob den Papierstern in die Luft.
-
-Für einen Moment fühlte es sich an, als würde er fliegen.
-
-Dann landete er sicher auf dem Schreibtisch und glänzte.`
-},
-
-Italian:{
-title:"La piccola stella di carta",
-text:
-`Una sera, una piccola stella di carta era accanto a una finestra.
-
-La luna guardò la stanza e tutto diventò silenzioso.
-
-Un vento leggero sollevò la stella nell’aria.
-
-Per un momento, sembrò che la stella stesse volando.
-
-Poi atterrò sulla scrivania e brillò.`
-},
-
-Hindi:{
-title:"कागज़ का छोटा सितारा",
-text:
-`एक शाम, कागज़ का एक छोटा सितारा खिड़की के पास रखा था।
-
-चाँद ने कमरे की ओर देखा और कमरा शांत हो गया।
-
-हल्की हवा ने सितारे को हवा में उठा लिया।
-
-एक पल के लिए उसे लगा जैसे वह उड़ रहा हो।
-
-फिर वह मेज़ पर आकर चाँदनी में चमकने लगा।`
-},
-
-Arabic:{
-title:"النجم الورقي الصغير",
-text:
-`في مساء هادئ، كان نجم صغير من الورق بجانب النافذة.
-
-نظر القمر إلى الغرفة فأصبحت ساكنة.
-
-رفعت نسمة لطيفة النجم الورقي في الهواء.
-
-وللحظة قصيرة، شعر النجم وكأنه يطير.
-
-ثم هبط على المكتب وبدأ يلمع في ضوء القمر.`
-}
-
-},
 
 {
+  id:2,
+  level:"Beginner",
+  description:"A forgotten letter brings back a beautiful memory.",
 
-emoji:"☕",
+  translations:{
 
-level:"Beginner",
+    English:{
+      title:"The Old Letter",
+      text:"Leo found an old letter inside a wooden box. The paper was soft and yellow. He read the letter slowly and smiled. It was written by his grandmother many years ago. Leo kept the letter carefully.",
+      vocabulary:[
+        ["letter","a written message"],
+        ["wooden","made of wood"],
+        ["memory","something remembered"],
+        ["carefully","with attention"]
+      ]
+    },
 
-description:
-"A quiet morning, a warm cup, and a little bird outside.",
+    Japanese:{
+      title:"古い手紙",
+      text:"レオは木の箱の中で古い手紙を見つけました。紙は柔らかく、黄色くなっていました。彼はゆっくり手紙を読んで、笑顔になりました。それは何年も前に祖母が書いた手紙でした。レオはその手紙を大切にしまいました。",
+      vocabulary:[
+        ["手紙","letter"],
+        ["箱","box"],
+        ["祖母","grandmother"],
+        ["大切に","carefully"]
+      ]
+    },
 
-vocab:[
-["morning","the early part of the day"],
-["tea","a warm drink"],
-["bird","an animal with feathers"],
-["peaceful","calm and quiet"]
-],
+    Korean:{
+      title:"오래된 편지",
+      text:"레오는 나무 상자 안에서 오래된 편지를 발견했습니다. 종이는 부드럽고 노랗게 변해 있었습니다. 그는 천천히 편지를 읽고 미소를 지었습니다. 그 편지는 몇 년 전에 할머니가 쓴 것이었습니다. 레오는 편지를 소중하게 보관했습니다.",
+      vocabulary:[
+        ["편지","letter"],
+        ["상자","box"],
+        ["할머니","grandmother"],
+        ["소중하게","carefully"]
+      ]
+    },
 
-translations:{
+    Spanish:{
+      title:"La carta antigua",
+      text:"Leo encontró una carta antigua dentro de una caja de madera. El papel era suave y amarillo. Leyó la carta lentamente y sonrió. La había escrito su abuela muchos años atrás. Leo guardó la carta con cuidado.",
+      vocabulary:[
+        ["carta","letter"],
+        ["madera","wood"],
+        ["abuela","grandmother"],
+        ["cuidado","care"]
+      ]
+    },
 
-English:{
-title:"A Warm Cup of Tea",
-text:
-`A quiet morning began with a warm cup of tea.
+    French:{
+      title:"La vieille lettre",
+      text:"Leo trouva une vieille lettre dans une boîte en bois. Le papier était doux et jaune. Il lut la lettre lentement et sourit. Elle avait été écrite par sa grand-mère plusieurs années auparavant. Leo conserva soigneusement la lettre.",
+      vocabulary:[
+        ["lettre","letter"],
+        ["boîte","box"],
+        ["grand-mère","grandmother"],
+        ["soigneusement","carefully"]
+      ]
+    },
 
-Mina opened the window and felt the gentle air.
+    German:{
+      title:"Der alte Brief",
+      text:"Leo fand einen alten Brief in einer Holzkiste. Das Papier war weich und gelb. Er las den Brief langsam und lächelte. Seine Großmutter hatte ihn vor vielen Jahren geschrieben. Leo bewahrte den Brief sorgfältig auf.",
+      vocabulary:[
+        ["Brief","letter"],
+        ["Holz","wood"],
+        ["Großmutter","grandmother"],
+        ["sorgfältig","carefully"]
+      ]
+    },
 
-A little bird was singing outside.
+    Italian:{
+      title:"La vecchia lettera",
+      text:"Leo trovò una vecchia lettera dentro una scatola di legno. La carta era morbida e gialla. Lesse lentamente la lettera e sorrise. Era stata scritta da sua nonna molti anni prima. Leo conservò la lettera con cura.",
+      vocabulary:[
+        ["lettera","letter"],
+        ["legno","wood"],
+        ["nonna","grandmother"],
+        ["cura","care"]
+      ]
+    },
 
-She sat by the window and listened.
+    Hindi:{
+      title:"पुराना पत्र",
+      text:"लियो को लकड़ी के एक डिब्बे में एक पुराना पत्र मिला। कागज़ नरम और पीला हो गया था। उसने धीरे-धीरे पत्र पढ़ा और मुस्कुराया। यह पत्र उसकी दादी ने कई साल पहले लिखा था। लियो ने पत्र को बहुत संभालकर रखा।",
+      vocabulary:[
+        ["पत्र","letter"],
+        ["लकड़ी","wood"],
+        ["दादी","grandmother"],
+        ["संभालकर","carefully"]
+      ]
+    },
 
-The tea smelled wonderful, and the morning felt peaceful.`
+    Arabic:{
+      title:"الرسالة القديمة",
+      text:"وجد ليو رسالة قديمة داخل صندوق خشبي. كان الورق ناعمًا وأصفر اللون. قرأ الرسالة ببطء وابتسم. كانت جدته قد كتبتها قبل سنوات عديدة. احتفظ ليو بالرسالة بعناية.",
+      vocabulary:[
+        ["رسالة","letter"],
+        ["صندوق","box"],
+        ["جدة","grandmother"],
+        ["بعناية","carefully"]
+      ]
+    }
+
+  }
 },
 
-Japanese:{
-title:"温かいお茶",
-text:
-`静かな朝が、温かいお茶とともに始まりました。
-
-ミナは窓を開け、やさしい空気を感じました。
-
-外では小さな鳥が歌っていました。
-
-彼女は窓辺に座って、その声を聞きました。
-
-お茶はいい香りがして、朝は穏やかでした。`
-},
-
-Korean:{
-title:"따뜻한 차 한 잔",
-text:
-`조용한 아침은 따뜻한 차 한 잔과 함께 시작되었습니다.
-
-미나는 창문을 열고 부드러운 공기를 느꼈습니다.
-
-밖에서는 작은 새가 노래하고 있었습니다.
-
-그녀는 창가에 앉아 그 소리를 들었습니다.
-
-차에서는 좋은 향기가 났고 아침은 평화로웠습니다.`
-},
-
-Spanish:{
-title:"Una taza de té caliente",
-text:
-`Una mañana tranquila comenzó con una taza de té caliente.
-
-Mina abrió la ventana y sintió el aire suave.
-
-Un pequeño pájaro cantaba afuera.
-
-Ella se sentó junto a la ventana y escuchó.
-
-El té olía muy bien y la mañana era tranquila.`
-},
-
-French:{
-title:"Une tasse de thé chaud",
-text:
-`Un matin calme commença avec une tasse de thé chaud.
-
-Mina ouvrit la fenêtre et sentit l’air doux.
-
-Un petit oiseau chantait dehors.
-
-Elle s’assit près de la fenêtre et écouta.
-
-Le thé sentait bon et le matin était paisible.`
-},
-
-German:{
-title:"Eine warme Tasse Tee",
-text:
-`Ein ruhiger Morgen begann mit einer warmen Tasse Tee.
-
-Mina öffnete das Fenster und spürte die sanfte Luft.
-
-Draußen sang ein kleiner Vogel.
-
-Sie setzte sich ans Fenster und hörte zu.
-
-Der Tee roch wunderbar und der Morgen war friedlich.`
-},
-
-Italian:{
-title:"Una tazza di tè caldo",
-text:
-`Una mattina tranquilla iniziò con una tazza di tè caldo.
-
-Mina aprì la finestra e sentì l’aria delicata.
-
-Fuori cantava un piccolo uccello.
-
-Si sedette vicino alla finestra e ascoltò.
-
-Il tè aveva un profumo meraviglioso e la mattina era tranquilla.`
-},
-
-Hindi:{
-title:"गर्म चाय का प्याला",
-text:
-`एक शांत सुबह गर्म चाय के प्याले के साथ शुरू हुई।
-
-मीना ने खिड़की खोली और हल्की हवा महसूस की।
-
-बाहर एक छोटी चिड़िया गा रही थी।
-
-वह खिड़की के पास बैठकर सुनने लगी।
-
-चाय की खुशबू अच्छी थी और सुबह शांत थी।`
-},
-
-Arabic:{
-title:"كوب من الشاي الدافئ",
-text:
-`بدأ صباح هادئ مع كوب من الشاي الدافئ.
-
-فتحت مينا النافذة وشعرت بالهواء اللطيف.
-
-كان طائر صغير يغني في الخارج.
-
-جلست بجانب النافذة واستمعت إليه.
-
-كانت رائحة الشاي جميلة وكان الصباح هادئًا.`
-}
-
-},
 
 {
+  id:3,
+  level:"Intermediate",
+  description:"A tiny garden teaches a lesson about patience.",
 
-emoji:"☔",
+  translations:{
 
-level:"Beginner",
+    English:{
+      title:"The Window Garden",
+      text:"Sara wanted to grow flowers, but she only had a small window. She planted three tiny seeds in a pot. Every morning, she gave them water. For many days, nothing happened. Then one morning, a green leaf appeared. Sara smiled because she understood that good things need time.",
+      vocabulary:[
+        ["seed","a small part from which a plant grows"],
+        ["pot","a container for a plant"],
+        ["leaf","the green part of a plant"],
+        ["patience","waiting calmly"]
+      ]
+    },
 
-description:
-"A rainy walk becomes a beautiful little adventure.",
+    Japanese:{
+      title:"窓辺の庭",
+      text:"サラは花を育てたいと思っていましたが、小さな窓しかありませんでした。彼女は鉢に小さな種を三つ植えました。毎朝、水をあげました。何日も何も起こりませんでした。そしてある朝、緑の葉が一枚出てきました。サラは、良いものには時間が必要だと理解して笑いました。",
+      vocabulary:[
+        ["種","seed"],
+        ["鉢","pot"],
+        ["葉","leaf"],
+        ["忍耐","patience"]
+      ]
+    },
 
-vocab:[
-["rain","water falling from clouds"],
-["umbrella","something used to stay dry"],
-["street","a road in a town"],
-["beautiful","pleasant to see"]
-],
+    Korean:{
+      title:"창가의 정원",
+      text:"사라는 꽃을 키우고 싶었지만 작은 창문 하나만 있었습니다. 그녀는 화분에 작은 씨앗 세 개를 심었습니다. 매일 아침 물을 주었습니다. 여러 날 동안 아무 일도 일어나지 않았습니다. 그러던 어느 아침, 초록색 잎 하나가 나타났습니다. 사라는 좋은 것에는 시간이 필요하다는 것을 깨닫고 미소 지었습니다.",
+      vocabulary:[
+        ["씨앗","seed"],
+        ["화분","pot"],
+        ["잎","leaf"],
+        ["인내","patience"]
+      ]
+    },
 
-translations:{
+    Spanish:{
+      title:"El jardín de la ventana",
+      text:"Sara quería cultivar flores, pero solo tenía una ventana pequeña. Plantó tres semillas pequeñas en una maceta. Cada mañana les daba agua. Durante muchos días no pasó nada. Entonces, una mañana apareció una hoja verde. Sara sonrió porque comprendió que las cosas buenas necesitan tiempo.",
+      vocabulary:[
+        ["semilla","seed"],
+        ["maceta","pot"],
+        ["hoja","leaf"],
+        ["paciencia","patience"]
+      ]
+    },
 
-English:{
-title:"The Blue Umbrella",
-text:
-`Rain began in the morning.
+    French:{
+      title:"Le jardin de la fenêtre",
+      text:"Sara voulait faire pousser des fleurs, mais elle n'avait qu'une petite fenêtre. Elle planta trois petites graines dans un pot. Chaque matin, elle leur donnait de l'eau. Pendant plusieurs jours, rien ne se passa. Puis un matin, une feuille verte apparut. Sara sourit car elle comprit que les bonnes choses prennent du temps.",
+      vocabulary:[
+        ["graine","seed"],
+        ["pot","pot"],
+        ["feuille","leaf"],
+        ["patience","patience"]
+      ]
+    },
 
-A girl opened her blue umbrella and walked outside.
+    German:{
+      title:"Der Fenstergarten",
+      text:"Sara wollte Blumen wachsen lassen, aber sie hatte nur ein kleines Fenster. Sie pflanzte drei kleine Samen in einen Topf. Jeden Morgen gab sie ihnen Wasser. Viele Tage lang passierte nichts. Dann erschien eines Morgens ein grünes Blatt. Sara lächelte, weil sie verstand, dass gute Dinge Zeit brauchen.",
+      vocabulary:[
+        ["Samen","seed"],
+        ["Topf","pot"],
+        ["Blatt","leaf"],
+        ["Geduld","patience"]
+      ]
+    },
 
-The streets were full of little puddles.
+    Italian:{
+      title:"Il giardino alla finestra",
+      text:"Sara voleva coltivare dei fiori, ma aveva solo una piccola finestra. Piantò tre piccoli semi in un vaso. Ogni mattina dava loro dell'acqua. Per molti giorni non successe nulla. Poi una mattina apparve una foglia verde. Sara sorrise perché capì che le cose belle hanno bisogno di tempo.",
+      vocabulary:[
+        ["seme","seed"],
+        ["vaso","pot"],
+        ["foglia","leaf"],
+        ["pazienza","patience"]
+      ]
+    },
 
-She listened to the rain and watched the drops fall.
+    Hindi:{
+      title:"खिड़की का बगीचा",
+      text:"सारा फूल उगाना चाहती थी, लेकिन उसके पास केवल एक छोटी खिड़की थी। उसने एक गमले में तीन छोटे बीज लगाए। हर सुबह वह उन्हें पानी देती थी। कई दिनों तक कुछ नहीं हुआ। फिर एक सुबह एक हरी पत्ती दिखाई दी। सारा मुस्कुराई क्योंकि उसने समझ लिया कि अच्छी चीज़ों में समय लगता है।",
+      vocabulary:[
+        ["बीज","seed"],
+        ["गमला","pot"],
+        ["पत्ती","leaf"],
+        ["धैर्य","patience"]
+      ]
+    },
 
-For her, the rainy day was beautiful.`
+    Arabic:{
+      title:"حديقة النافذة",
+      text:"أرادت سارة أن تزرع الزهور، لكنها كانت تملك نافذة صغيرة فقط. زرعت ثلاث بذور صغيرة في أصيص. كل صباح كانت تسقيها. لعدة أيام لم يحدث شيء. ثم في صباح ما ظهرت ورقة خضراء. ابتسمت سارة لأنها فهمت أن الأشياء الجميلة تحتاج إلى وقت.",
+      vocabulary:[
+        ["بذرة","seed"],
+        ["أصيص","pot"],
+        ["ورقة","leaf"],
+        ["صبر","patience"]
+      ]
+    }
+
+  }
 },
 
-Japanese:{
-title:"青い傘",
-text:
-`朝から雨が降り始めました。
-
-女の子は青い傘を開いて外へ歩きました。
-
-道には小さな水たまりがありました。
-
-彼女は雨の音を聞き、雫を見ました。
-
-彼女にとって、雨の日は美しい一日でした。`
-},
-
-Korean:{
-title:"파란 우산",
-text:
-`아침부터 비가 내리기 시작했습니다.
-
-한 소녀가 파란 우산을 펴고 밖으로 걸어 나갔습니다.
-
-길에는 작은 물웅덩이가 가득했습니다.
-
-그녀는 빗소리를 듣고 빗방울을 바라보았습니다.
-
-그녀에게 비 오는 날은 아름다웠습니다.`
-},
-
-Spanish:{
-title:"El paraguas azul",
-text:
-`La lluvia comenzó por la mañana.
-
-Una niña abrió su paraguas azul y salió a caminar.
-
-Las calles estaban llenas de pequeños charcos.
-
-Escuchó la lluvia y vio caer las gotas.
-
-Para ella, el día lluvioso era hermoso.`
-},
-
-French:{
-title:"Le parapluie bleu",
-text:
-`La pluie commença le matin.
-
-Une fille ouvrit son parapluie bleu et sortit marcher.
-
-Les rues étaient pleines de petites flaques.
-
-Elle écouta la pluie et regarda tomber les gouttes.
-
-Pour elle, la journée pluvieuse était belle.`
-},
-
-German:{
-title:"Der blaue Regenschirm",
-text:
-`Am Morgen begann der Regen.
-
-Ein Mädchen öffnete ihren blauen Regenschirm und ging nach draußen.
-
-Die Straßen waren voller kleiner Pfützen.
-
-Sie hörte den Regen und sah die Tropfen fallen.
-
-Für sie war der Regentag wunderschön.`
-},
-
-Italian:{
-title:"L’ombrello blu",
-text:
-`La pioggia iniziò al mattino.
-
-Una ragazza aprì il suo ombrello blu e uscì a camminare.
-
-Le strade erano piene di piccole pozzanghere.
-
-Ascoltò la pioggia e guardò cadere le gocce.
-
-Per lei, la giornata di pioggia era bellissima.`
-},
-
-Hindi:{
-title:"नीली छतरी",
-text:
-`सुबह बारिश शुरू हो गई।
-
-एक लड़की ने अपनी नीली छतरी खोली और बाहर चल पड़ी।
-
-सड़कें छोटी-छोटी पानी की गड्ढियों से भरी थीं।
-
-उसने बारिश की आवाज़ सुनी और गिरती बूँदों को देखा।
-
-उसके लिए बारिश का दिन बहुत सुंदर था।`
-},
-
-Arabic:{
-title:"المظلة الزرقاء",
-text:
-`بدأ المطر في الصباح.
-
-فتحت فتاة مظلتها الزرقاء ومشت في الخارج.
-
-كانت الشوارع مليئة بالبرك الصغيرة.
-
-استمعت إلى المطر وشاهدت القطرات.
-
-بالنسبة إليها، كان اليوم الماطر جميلًا.`
-}
-
-},
 
 {
-
-emoji:"🌿",
-
-level:"Beginner",
-
-description:
-"A small garden teaches a simple lesson about patience.",
-
-vocab:[
-["garden","a place where plants grow"],
-["seed","a beginning of a plant"],
-["patient","able to wait calmly"],
-["grow","to become bigger"]
-],
-
-translations:{
-
-English:{
-title:"The Quiet Garden",
-text:
-`Every afternoon, Leo watered a tiny seed in his garden.
-
-For many days, nothing seemed to happen.
-
-He kept watering it and waited patiently.
-
-One morning, a small green leaf appeared.
-
-Leo smiled. Some things need time.`
-},
-
-Japanese:{
-title:"静かな庭",
-text:
-`毎日の午後、レオは庭の小さな種に水をあげました。
-
-何日たっても、何も起こらないように見えました。
-
-彼は水をあげ続け、辛抱強く待ちました。
-
-ある朝、小さな緑の葉が出てきました。
-
-レオは微笑みました。時間が必要なものもあります。`
-},
-
-Korean:{
-title:"조용한 정원",
-text:
-`매일 오후, 레오는 정원의 작은 씨앗에 물을 주었습니다.
-
-며칠 동안 아무 일도 일어나지 않는 것 같았습니다.
-
-그는 계속 물을 주며 참을성 있게 기다렸습니다.
-
-어느 아침, 작은 초록 잎이 나타났습니다.
-
-레오는 미소 지었습니다. 어떤 것들은 시간이 필요합니다.`
-},
-
-Spanish:{
-title:"El jardín tranquilo",
-text:
-`Cada tarde, Leo regaba una pequeña semilla en su jardín.
-
-Durante muchos días, parecía que no pasaba nada.
-
-Siguió regándola y esperó con paciencia.
-
-Una mañana apareció una pequeña hoja verde.
-
-Leo sonrió. Algunas cosas necesitan tiempo.`
-},
-
-French:{
-title:"Le jardin calme",
-text:
-`Chaque après-midi, Leo arrosait une petite graine dans son jardin.
-
-Pendant plusieurs jours, rien ne semblait se passer.
-
-Il continua de l’arroser et attendit patiemment.
-
-Un matin, une petite feuille verte apparut.
-
-Leo sourit. Certaines choses ont besoin de temps.`
-},
-
-German:{
-title:"Der ruhige Garten",
-text:
-`Jeden Nachmittag goss Leo einen kleinen Samen in seinem Garten.
-
-Viele Tage lang schien nichts zu passieren.
-
-Er goss ihn weiter und wartete geduldig.
-
-Eines Morgens erschien ein kleines grünes Blatt.
-
-Leo lächelte. Manche Dinge brauchen Zeit.`
-},
-
-Italian:{
-title:"Il giardino tranquillo",
-text:
-`Ogni pomeriggio, Leo annaffiava un piccolo seme nel suo giardino.
-
-Per molti giorni sembrava che non accadesse nulla.
-
-Continuò ad annaffiarlo e aspettò con pazienza.
-
-Una mattina apparve una piccola foglia verde.
-
-Leo sorrise. Alcune cose hanno bisogno di tempo.`
-},
-
-Hindi:{
-title:"शांत बगीचा",
-text:
-`हर दोपहर, लियो अपने बगीचे में एक छोटे बीज को पानी देता था।
-
-कई दिनों तक ऐसा लगा जैसे कुछ नहीं हो रहा है।
-
-वह पानी देता रहा और धैर्य से इंतज़ार करता रहा।
-
-एक सुबह एक छोटी हरी पत्ती दिखाई दी।
-
-लियो मुस्कुराया। कुछ चीज़ों को समय लगता है।`
-},
-
-Arabic:{
-title:"الحديقة الهادئة",
-text:
-`كل بعد ظهر، كان ليو يسقي بذرة صغيرة في حديقته.
-
-مرت أيام كثيرة ولم يبدو أن شيئًا يحدث.
-
-استمر في سقيها وانتظر بصبر.
-
-في صباح أحد الأيام، ظهرت ورقة خضراء صغيرة.
-
-ابتسم ليو. بعض الأشياء تحتاج إلى وقت.`
-}
-
-}
-
-];
-
-
-let selectedLanguage="English";
-let currentStory=0;
-let fontSize=19;
-
-
-function setupLanguages(){
-
-const box=document.getElementById("langs");
-
-box.innerHTML=languages.map(x=>`
-
-<button
-class="lang ${x[0]==="English"?"active":""}"
-onclick="chooseLanguage('${x[0]}',this)">
-
-${x[1]} ${x[0]}
-
-</button>
-
-`).join("");
-
-}
-
-
-function chooseLanguage(language,button){
-
-selectedLanguage=language;
-
-document
-.querySelectorAll(".lang")
-.forEach(b=>b.classList.remove("active"));
-
-button.classList.add("active");
-
-render();
-
-}
-
-
-function render(){
-
-const query=
-document.getElementById("search")
-.value
-.toLowerCase()
-.trim();
-
-
-const filtered=stories.filter(story=>{
-
-const title=
-story.translations[selectedLanguage].title
-.toLowerCase();
-
-return title.includes(query) ||
-story.description.toLowerCase().includes(query);
-
-});
-
-
-document.getElementById("count").textContent=
-filtered.length+" stories";
-
-
-document.getElementById("ft").textContent=
-stories[0].translations[selectedLanguage].title;
-
-document.getElementById("fd").textContent=
-stories[0].description;
-
-
-const container=
-document.getElementById("stories");
-
-
-if(filtered.length===0){
-
-container.innerHTML=`
-<div class="empty">
-🌷<br><br>
-No stories found.
-</div>
-`;
-
-return;
-
-}
-
-
-container.innerHTML=
-
-filtered.map(story=>{
-
-const index=stories.indexOf(story);
-
-return `
-
-<article class="story">
-
-<div>
-
-<div class="top">
-
-<div class="emoji">
-${story.emoji}
-</div>
-
-<button
-class="fav"
-onclick="toggleFavorite(${index})">
-
-${isFavorite(index)?"♥":"♡"}
-
-</button>
-
-</div>
-
-
-<div class="slang">
-${selectedLanguage}
-</div>
-
-
-<h3>
-${story.translations[selectedLanguage].title}
-</h3>
-
-
-<p>
-${story.description}
-</p>
-
-</div>
-
-
-<div class="foot">
-
-<span class="level">
-${story.level}
-</span>
-
-<button
-class="open"
-onclick="openStory(${index})">
-
-Read →
-
-</button>
-
-</div>
-
-</article>
-
-`;
-
-}).join("");
-
-}
-
-
-function openStory(index){
-
-currentStory=index;
-
-const story=stories[index];
-const translation=
-story.translations[selectedLanguage];
-
-document.getElementById("rt").textContent=
-translation.title;
-
-document.getElementById("rlang").textContent=
-selectedLanguage+" • "+story.level;
-
-document.getElementById("original").textContent=
-translation.text;
-
-document.getElementById("translation").textContent=
-story.translations.English.text;
-
-
-document.getElementById("vocab").innerHTML=
-
-story.vocab.map(word=>`
-
-<div class="word">
-
-<b>${word[0]}</b>
-
-<br>
-
-<small>
-${word[1]}
-</small>
-
-</div>
-
-`).join("");
-
-
-document.getElementById("reader")
-.classList.add("show");
-
-document.body.style.overflow="hidden";
-
-}
-
-
-function closeStory(){
-
-document.getElementById("reader")
-.classList.remove("show");
-
-document.body.style.overflow="";
-
-if("speechSynthesis" in window){
-
-speechSynthesis.cancel();
-
-}
-
-}
-
-
-function size(change){
-
-fontSize+=change;
-
-if(fontSize<15) fontSize=15;
-
-if(fontSize>28) fontSize=28;
-
-document.getElementById("original")
-.style.fontSize=fontSize+"px";
-
-}
-
-
-function listen(){
-
-if(!("speechSynthesis" in window))
-return;
-
-speechSynthesis.cancel();
-
-const text=
-document.getElementById("original").textContent;
-
-const codes={
-
-English:"en",
-Japanese:"ja",
-Korean:"ko",
-Spanish:"es",
-Frenc
+  id:4,
+  level:"Intermediate",
+  description:"A quiet library becomes a place of discovery.",
+
+  translations:{
+
+    English:{
+      title:"The Quiet Library",
+      text:"Every Saturday, Noor visited a small library near her home. One day, she found a book without a title on its cover. She opened it and discovered stories about places she had never seen. Noor spent the afternoon reading. When she left the library, she felt as if she had travelled around the world.",
+      vocabulary:[
+        ["library","a place where books are kept"],
+        ["discover","to find something new"],
+        ["cover","the outside part of a book"],
+        ["travel","to go from one place to another"]
+      ]
+    },
+
+    Japanese:{
+      title:"静かな図書館",
+      text:"毎週土曜日、ヌールは家の近くにある小さな図書館へ行きました。ある日、表紙にタイトルのない本を見つけました。開いてみると、まだ見たことのない場所についての物語が書かれていました。ヌールは午後ずっと読書をしました。図書館を出るとき、まるで世界中を旅したような気持ちでした。",
+      vocabulary:[
+        ["図書館","library"],
+        ["発見する","discover"],
+        ["表紙","cover"],
+        ["旅","travel"]
+      ]
+    },
+
+    Korean:{
+      title:"조용한 도서관",
+      text:"매주 토요일, 누르는 집 근처의 작은 도서관에 갔습니다. 어느 날, 표지에 제목이 없는 책을 발견했습니다. 책을 펼치자 한 번도 가 본 적 없는 장소에 대한 이야기들이 나왔습니다. 누르는 오후 내내 책을 읽었습니다. 도서관을 나올 때, 마치 세계를 여행한 것 같은 기분이 들었습니다.",
+      vocabulary:[
+        ["도서관","library"],
+        ["발견하다","discover"],
+        ["표지","cover"],
+        ["여행","travel"]
+      ]
+    },
+
+    Spanish:{
+      title:"La biblioteca tranqui
