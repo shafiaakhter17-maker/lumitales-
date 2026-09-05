@@ -1,0 +1,20 @@
+{
+  "name": "LumiTales",
+  "short_name": "LumiTales",
+  "description": "Beautiful original stories for learning languages.",
+  "id": "/lumitales/",
+  "start_url": "/lumitales/",
+  "scope": "/lumitales/",
+  "display": "standalone",
+  "background_color": "#f8f2ed",
+  "theme_color": "#d99da7",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
