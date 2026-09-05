@@ -1,4 +1,4 @@
-const CACHE_NAME = "lumitales-v1";
+const CACHE_NAME = "lumitales-v2";
 
 const FILES_TO_CACHE = [
   "./",
