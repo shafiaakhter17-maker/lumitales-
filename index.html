@@ -1017,4 +1017,22 @@ function favoriteStory(index){
     let fav=
         JSON.parse(localStorage.getItem("lumiFavorites")||"[]");
 
-  
+      if(fav.includes(index)){
+        fav = fav.filter(i => i !== index);
+    } else {
+        fav.push(index);
+    }
+
+    localStorage.setItem("lumiFavorites", JSON.stringify(fav));
+    renderStories();
+}
+
+renderStories();
+
+if(localStorage.getItem("lumiDark")==="true"){
+    document.body.classList.add("dark");
+}
+</script>
+
+</body>
+</html>
